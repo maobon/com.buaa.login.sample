@@ -1,14 +1,11 @@
-package com.buaa.sample;
+package com.buaa.sample.activity;
 
 import android.app.AlertDialog;
 import android.os.Bundle;
-import android.os.Handler;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-
-import java.util.Random;
 
 public class BaseActivity extends AppCompatActivity {
 
@@ -17,6 +14,7 @@ public class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         initViews();
     }
 
@@ -31,24 +29,24 @@ public class BaseActivity extends AppCompatActivity {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
-    public void requestServer() {
+
+    public void showLoadingBar() {
+        alertDialog.show();
+    }
+
+    public void dismissLoadingBar() {
         if (alertDialog.isShowing()) {
             alertDialog.dismiss();
-        } else {
-            alertDialog.show();
-            new Handler().postDelayed(() -> {
-                if (alertDialog != null && alertDialog.isShowing()) {
-                    alertDialog.dismiss();
-                }
-            }, 800 * new Random().nextInt(3));
         }
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
+
         if (alertDialog != null && alertDialog.isShowing())
             alertDialog.dismiss();
+
         alertDialog = null;
     }
 }

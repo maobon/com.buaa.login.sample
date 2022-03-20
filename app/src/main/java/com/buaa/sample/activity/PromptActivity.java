@@ -1,4 +1,4 @@
-package com.buaa.sample;
+package com.buaa.sample.activity;
 
 import android.app.Activity;
 import android.content.Intent;

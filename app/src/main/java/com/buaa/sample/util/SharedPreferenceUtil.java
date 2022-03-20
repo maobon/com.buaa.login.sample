@@ -1,8 +1,10 @@
-package com.buaa.sample;
+package com.buaa.sample.util;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Base64;
+
+import com.buaa.sample.Constant;
 
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
@@ -11,17 +13,17 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-class SharedPreferenceUtils {
+public class SharedPreferenceUtil {
 
     private final SharedPreferences mSharedPreference;
 
-    private static SharedPreferenceUtils sOurInstance = null;
+    private static SharedPreferenceUtil sOurInstance = null;
 
-    public static SharedPreferenceUtils getInstance(Context context, String filename) {
+    public static SharedPreferenceUtil getInstance(Context context, String filename) {
         if (sOurInstance == null) {
-            synchronized (SharedPreferenceUtils.class) {
+            synchronized (SharedPreferenceUtil.class) {
                 if (sOurInstance == null) {
-                    sOurInstance = new SharedPreferenceUtils(context, filename);
+                    sOurInstance = new SharedPreferenceUtil(context, filename);
                 }
             }
         }
@@ -32,7 +34,7 @@ class SharedPreferenceUtils {
         return mSharedPreference.contains(username);
     }
 
-    private SharedPreferenceUtils(Context context, String filename) {
+    private SharedPreferenceUtil(Context context, String filename) {
         mSharedPreference = context.getSharedPreferences(filename, Context.MODE_PRIVATE);
     }
 
