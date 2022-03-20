@@ -9,7 +9,5 @@
         android:id="@+id/tv_prompt"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="Welcome BUAA Homepage" />
-
+        android:gravity="center" />
 </androidx.constraintlayout.widget.ConstraintLayout>

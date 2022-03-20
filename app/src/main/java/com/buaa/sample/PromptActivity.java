@@ -26,10 +26,7 @@ public class PromptActivity extends BaseActivity {
 
         String username = getIntent().getStringExtra("username");
         if (TextUtils.isEmpty(username)) return;
-
         activityPromptBinding.tvPrompt.setText(String.format("Welcome!!\nusername:%s", username));
-
-
     }
 
     @Override
