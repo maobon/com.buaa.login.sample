@@ -1,6 +1,8 @@
 package com.buaa.sample;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.TextUtils;
 import android.util.Base64;
 import android.view.View;
@@ -28,14 +30,11 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     }
 
     private void initViews() {
-        assert loginBinding.btnRegisterOrLogin != null;
         loginBinding.btnRegisterOrLogin.setOnClickListener(this);
 
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
+                android.R.layout.simple_dropdown_item_1line, sharedPreferenceUtils.queryAllUsernames());
 
-        String[] datas = {"xin", "item2", "item3"};
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, datas);
-
-        assert loginBinding.etUsername != null;
         loginBinding.etUsername.setThreshold(1);
         loginBinding.etUsername.setAdapter(adapter);
     }
@@ -49,9 +48,9 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     @Override
     public void onClick(View view) {
         if (view.getId() == R.id.btn_register_or_login) {
-            toast("haha");
 
-            assert loginBinding.etUsername != null;
+            UiUtils.hideKeyboard(this);
+
             final String username = loginBinding.etUsername.getText().toString();
             if (isContentInvalid(username)) {
                 toast("请检查输入内容");
@@ -59,7 +58,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                 return;
             }
 
-            assert loginBinding.etPassword != null;
             final String password = loginBinding.etPassword.getText().toString();
 
             // todo 判空
@@ -78,7 +76,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                     String s1 = Base64.encodeToString(digest1, Constants.BASE64_FLAG);
                     if (s1.equals(s)) {
                         toast("登录成功");
-                        PromptActivity.launch(LoginActivity.this, username);
+                        launchPromptActivity(username);
+
                     } else {
                         toast("登录失败");
                     }
@@ -103,4 +102,15 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         return TextUtils.isEmpty(userInput);
     }
 
+    private void launchPromptActivity(String username) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Logging in").setMessage("Please wait");
+        AlertDialog alertDialog = builder.create();
+
+        alertDialog.show();
+        new Handler().postDelayed(() -> {
+            alertDialog.dismiss();
+            PromptActivity.launch(LoginActivity.this, username);
+        }, 1000);
+    }
 }

@@ -6,6 +6,10 @@ import android.util.Base64;
 
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 class SharedPreferenceUtils {
 
@@ -30,6 +34,14 @@ class SharedPreferenceUtils {
 
     private SharedPreferenceUtils(Context context, String filename) {
         mSharedPreference = context.getSharedPreferences(filename, Context.MODE_PRIVATE);
+    }
+
+    public String[] queryAllUsernames() {
+        Map<String, ?> all = mSharedPreference.getAll();
+        Set<String> usernames = all.keySet();
+        if(usernames.size() == 0) return new String[0];
+        List<String> list = new ArrayList<>(usernames);
+        return list.toArray(new String[0]);
     }
 
     public boolean save(String key, String val) {
