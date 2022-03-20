@@ -36,7 +36,7 @@ class SharedPreferenceUtils {
         try {
             MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
             byte[] digest = messageDigest.digest(val.getBytes(StandardCharsets.UTF_8));
-            String s = Base64.encodeToString(digest, Base64.URL_SAFE | Base64.NO_CLOSE | Base64.NO_WRAP);
+            String s = Base64.encodeToString(digest, Constants.BASE64_FLAG);
             return mSharedPreference.edit().putString(key, s).commit();
         } catch (Exception e) {
             e.printStackTrace();
