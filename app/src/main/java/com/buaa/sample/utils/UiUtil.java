@@ -1,4 +1,4 @@
-package com.buaa.sample.util;
+package com.buaa.sample.utils;
 
 import android.app.Activity;
 import android.view.View;

@@ -6,13 +6,14 @@ import android.text.TextUtils;
 import android.util.Base64;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 
 import com.buaa.sample.Constant;
 import com.buaa.sample.net.NetworkRunnable;
 import com.buaa.sample.R;
 import com.buaa.sample.databinding.ActivityLoginBinding;
-import com.buaa.sample.util.SharedPreferenceUtil;
-import com.buaa.sample.util.UiUtil;
+import com.buaa.sample.utils.SharedPreferenceUtil;
+import com.buaa.sample.utils.UiUtil;
 
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
@@ -25,6 +26,7 @@ public class LoginActivity extends BaseActivity
 
     private NetworkRunnable mRequestRunnable;
     private Handler handler;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
