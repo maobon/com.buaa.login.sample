@@ -53,15 +53,16 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     @Override
     public void onClick(View view) {
         if (view.getId() == R.id.btn_register_or_login) {
-            mRequestRunnable = new NetworkRunnable(() -> {
-                dismissLoadingBar();
-                try {
-                    process(checkInputs());
-                } catch (IllegalAccessException e) {
-                    e.printStackTrace();
-                }
-            });
-            requestServer(mRequestRunnable);
+            try {
+                String[] userInputs = checkInputs();
+                mRequestRunnable = new NetworkRunnable(() -> {
+                    dismissLoadingBar();
+                    process(userInputs);
+                });
+                requestServer(mRequestRunnable);
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
         }
     }
 
