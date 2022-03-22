@@ -1,5 +1,10 @@
 package com.buaa.sample.net;
 
+/**
+ * create by xin on 2022-3-22
+ * request server task
+ */
+
 public class NetworkRunnable implements Runnable {
 
     private final RequestServer requestServer;

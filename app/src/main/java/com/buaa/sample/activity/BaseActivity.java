@@ -7,6 +7,11 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+/**
+ * create by xin on 2022-3-22
+ * Base Activity
+ */
+
 public class BaseActivity extends AppCompatActivity {
 
     private AlertDialog alertDialog;
@@ -20,15 +25,14 @@ public class BaseActivity extends AppCompatActivity {
 
     private void initViews() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this)
-                .setTitle("Please wait")
-                .setMessage("requesting server");
+                .setTitle("请稍后")
+                .setMessage("正在请求服务端");
         alertDialog = builder.create();
     }
 
     public void toast(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
-
 
     public void showLoadingBar() {
         alertDialog.show();
@@ -46,7 +50,6 @@ public class BaseActivity extends AppCompatActivity {
 
         if (alertDialog != null && alertDialog.isShowing())
             alertDialog.dismiss();
-
         alertDialog = null;
     }
 }

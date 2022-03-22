@@ -4,6 +4,10 @@ import android.app.Activity;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
+/**
+ * create by xin on 2022-3-22
+ */
+
 public class UiUtil {
 
     public static void hideKeyboard(Activity activity) {

@@ -7,7 +7,14 @@ import android.text.TextUtils;
 
 import com.buaa.sample.databinding.ActivityPromptBinding;
 
+/**
+ * create by xin on 2022-3-22
+ * Prompt Activity
+ */
+
 public class PromptActivity extends BaseActivity {
+
+    private ActivityPromptBinding binding;
 
     public static void launch(Activity activity, String username) {
         Intent intent = new Intent(activity, PromptActivity.class);
@@ -16,22 +23,20 @@ public class PromptActivity extends BaseActivity {
         activity.finish();
     }
 
-    private ActivityPromptBinding activityPromptBinding;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        activityPromptBinding = ActivityPromptBinding.inflate(getLayoutInflater());
-        setContentView(activityPromptBinding.getRoot());
+        binding = ActivityPromptBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
         String username = getIntent().getStringExtra("username");
         if (TextUtils.isEmpty(username)) return;
-        activityPromptBinding.tvPrompt.setText(String.format("Welcome!!\nusername:%s", username));
+        binding.tvPrompt.setText(String.format("欢迎!!\n 用户名:%s", username));
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        activityPromptBinding = null;
+        binding = null;
     }
 }

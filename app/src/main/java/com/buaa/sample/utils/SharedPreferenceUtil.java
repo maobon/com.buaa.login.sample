@@ -13,6 +13,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+/**
+ * create by xin on 2022-3-22
+ * Singleton pattern. SharedPreference util
+ */
+
 public class SharedPreferenceUtil {
 
     private final SharedPreferences mSharedPreference;
@@ -22,9 +27,8 @@ public class SharedPreferenceUtil {
     public static SharedPreferenceUtil getInstance(Context context, String filename) {
         if (sOurInstance == null) {
             synchronized (SharedPreferenceUtil.class) {
-                if (sOurInstance == null) {
+                if (sOurInstance == null)
                     sOurInstance = new SharedPreferenceUtil(context, filename);
-                }
             }
         }
         return sOurInstance;
